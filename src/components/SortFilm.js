@@ -57,7 +57,7 @@ const SortFilm = () => {
       </Helmet>
 
       <h2 className="text-xl font-bold mb-4 mt-20">Tìm kiếm phim</h2>
-      <div className="relative w-1/4">
+      <div className="relative md:w-1/4 w-full">
         <input
           type="text"
           value={keyword}

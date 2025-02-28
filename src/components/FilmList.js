@@ -4,7 +4,7 @@ const FilmList = ({ results }) => {
     const navigate = useNavigate();
   return (
     results.length > 0 && (
-      <div className="mt-6 grid grid-cols-5 gap-4">
+      <div className="mt-6 grid md:grid-cols-5 grid-cols-2 gap-4">
         {results.map((film) => (
           <div key={film._id} className="bg-gray-800 p-4 rounded-lg" onClick={() => navigate(`/film/${film.slug}`)}>
             <img
