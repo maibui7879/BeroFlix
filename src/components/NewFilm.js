@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Helmet } from "react-helmet-async";
+
 const NewFilm = () => {
   const [films, setFilms] = useState([]);
   const [page, setPage] = useState(1);
@@ -21,9 +22,18 @@ const NewFilm = () => {
   const fetchFilms = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://phimapi.com/danh-sach/phim-moi-cap-nhat?page=${page}`);
-      setFilms(response.data.items);
-      setTotalPages(response.data.pagination.totalPages);
+      if (page === 1) {
+        const response = await axios.get(`https://phimapi.com/danh-sach/phim-moi-cap-nhat?page=${page}`);
+        setFilms(response.data.items);
+        setTotalPages(response.data.pagination.totalPages);
+      } else {
+        const [res1, res2] = await Promise.all([
+          axios.get(`https://phimapi.com/danh-sach/phim-moi-cap-nhat?page=${page * 2}`),
+          axios.get(`https://phimapi.com/danh-sach/phim-moi-cap-nhat?page=${page * 2 + 1}`)
+        ]);
+        setFilms([...res1.data.items, ...res2.data.items]);
+        setTotalPages(Math.ceil(res2.data.pagination.totalPages / 2));
+      }
     } catch (error) {
       console.error("Lỗi tải phim:", error);
     }
@@ -35,11 +45,15 @@ const NewFilm = () => {
   }, [fetchFilms]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % Math.min(5, films.length));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [films]);
+    if (page === 1 && films.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % Math.min(5, films.length));
+      }, 3000);
+      return () => clearInterval(interval);
+    } else {
+      setCurrentSlide(0);
+    }
+  }, [films, page]);
 
   if (loading) {
     return (
@@ -54,7 +68,7 @@ const NewFilm = () => {
       <Helmet>
         <title>BeroFlix - Phim Mới Cập Nhật</title>
       </Helmet>
-      {films.length > 0 && (
+      {page === 1 && films.length > 0 && (
         <div
           className="slider relative h-dvh overflow-hidden mb-8 hover:text-gray-700 mt-8"
           onClick={() => navigate(`/film/${films[currentSlide].slug}`)}
@@ -104,7 +118,7 @@ const NewFilm = () => {
         <Button
           onClick={() => setPage((prev) => Math.max(1, prev - 1))}
           disabled={page === 1}
-          className="bg-gray-800 text-white hover:bg-gray-700 border-none"
+          className="bg-gray-800 text-white hover:bg-red-500 border-none"
         >
           <FontAwesomeIcon icon={faChevronLeft} />
         </Button>
@@ -114,7 +128,7 @@ const NewFilm = () => {
             <Button
               key={num}
               onClick={() => setPage(num)}
-              className={`bg-gray-800 text-white hover:bg-gray-700 border-none ${page === num ? "bg-gray-700 font-bold" : ""}`}
+              className={`bg-gray-800 text-white hover:bg-red-500 border-none ${page === num ? "bg-gray-700 font-bold" : ""}`}
             >
               {num}
             </Button>
@@ -123,7 +137,7 @@ const NewFilm = () => {
         <Button
           onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
           disabled={page === totalPages}
-          className="bg-gray-800 text-white hover:bg-gray-700 border-none"
+          className="bg-gray-800 text-white hover:bg-red-500 border-none"
         >
           <FontAwesomeIcon icon={faChevronRight} />
         </Button>

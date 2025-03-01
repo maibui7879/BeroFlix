@@ -11,11 +11,11 @@ const Pagination = ({ page, setPage, totalPages, visiblePages }) => {
           <FontAwesomeIcon icon={faChevronLeft} />
         </Button>
         {visiblePages.map((num) => (
-          <Button key={num} onClick={() => setPage(num)} className={`bg-gray-800 text-white hover:bg-gray-700 border-none ${page === num ? "bg-gray-700 font-bold" : ""}`}>
+          <Button key={num} onClick={() => setPage(num)} className={`bg-gray-800 text-white hover:bg-red-500 border-none ${page === num ? "bg-gray-700 font-bold" : ""}`}>
             {num}
           </Button>
         ))}
-        <Button onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))} disabled={page === totalPages} className="bg-gray-800 text-white hover:bg-gray-700 border-none">
+        <Button onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))} disabled={page === totalPages} className="bg-gray-800 text-white hover:bg-red-500 border-none">
           <FontAwesomeIcon icon={faChevronRight} />
         </Button>
       </div>

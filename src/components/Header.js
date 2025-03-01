@@ -37,7 +37,7 @@ const Header = () => {
         <div className="container mx-auto flex justify-between items-center py-3 px-4">
           <h1 className="text-2xl font-bold flex items-center">
 
-            <Link to="/">Bero<span className="text-red-500">Flix</span></Link>
+            <button onClick={toggleSidebar}>Bero<span className="text-red-500">Flix</span></button>
           </h1>
 
           <nav className="hidden md:flex items-center space-x-8 flex-nowrap">
@@ -88,7 +88,7 @@ const Header = () => {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <div className="flex justify-between items-center px-4 py-4 border-b border-gray-700">
-                <h2 className="text-lg font-semibold">Menu</h2>
+                <h2 className="text-xl ml-4 font-semibold">Bero<span className="text-red-500 font-bold">Flix</span></h2>
                 <button onClick={toggleSidebar} className="text-white text-2xl hover:text-red-500">
                   <FaArrowLeft />
                 </button>
@@ -98,7 +98,7 @@ const Header = () => {
                   <div className="relative">
                     <input
                       type="text"
-                      className="bg-gray-800 text-white px-2 py-1 pr-10 w-full rounded-lg border border-white"
+                      className="bg-gray-800 text-white px-2 py-1 pr-10 w-full rounded-lg border border-red-500"
                       placeholder="Tìm kiếm phim..."
                       value={searchKeyword}
                       onChange={(e) => setSearchKeyword(e.target.value)}
