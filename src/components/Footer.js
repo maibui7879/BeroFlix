@@ -9,20 +9,20 @@ const Footer = () => {
         <div>
           <img src="logo.png" className="h-16"></img>
           <h2 className="text-2xl font-bold">Bero<span className="text-red-500">Flix</span></h2>
-          <p className="mt-2 text-sm">Đô nết tại VietinBank - 0329556941 để assmin có tiền roll Castorice E6S5</p>
+          <p className="mt-2 text-sm">Đô nết tại <span className="text-red-500">VietinBank - 0329556941</span> để assmin có tiền roll Castorice E6S5</p>
         </div>
 
         {/* Cột 2: Hỗ trợ */}
         <div>
           <h3 className="font-semibold text-lg mb-3">Bạn cần <span className="text-red-500">hỗ trợ ?</span></h3>
-          <p className="text-xl font-bold">0329556941</p>
-          <p className="text-sm mt-1"><b>Địa chỉ:</b> Lorem ipsum odor?!</p>
-          <p className="text-sm"><b>Email:</b> maibui7879@gmail.com</p>
+          <p className="text-xl font-bold text-red-500">0329556941</p>
+          <p className="text-sm mt-1"><span className="text-red-500 font-bold">Địa chỉ:</span> Lorem ipsum odor?!</p>
+          <p className="text-sm"><span className="text-red-500 font-bold">Email:</span> maibui7879@gmail.com</p>
           <div className="flex space-x-3 mt-3">
-            <FaFacebook size={20} />
-            <FaTwitter size={20} />
-            <FaInstagram size={20} />
-            <FaYoutube size={20} />
+          <div className="hover:text-red-500"><a href="https://www.facebook.com/VanciadelaProvenceXVIII/?locale=vi_VN"><FaFacebook size={20} /></a></div>
+          <div className="hover:text-red-500"><FaTwitter size={20} /></div>
+          <div className="hover:text-red-500"><FaInstagram size={20} /></div>
+          <div className="hover:text-red-500"><FaYoutube size={20} /></div>
           </div>
         </div>
 
