@@ -15,7 +15,7 @@ const Footer = () => {
         {/* Cột 2: Hỗ trợ */}
         <div>
           <h3 className="font-semibold text-lg mb-3">Bạn cần <span className="text-red-500">hỗ trợ ?</span></h3>
-          <p className="text-xl font-bold text-red-500">0329556941</p>
+          <p className="text-xl font-bold">0329556941</p>
           <p className="text-sm mt-1"><span className="text-red-500 font-bold">Địa chỉ:</span> Lorem ipsum odor?!</p>
           <p className="text-sm"><span className="text-red-500 font-bold">Email:</span> maibui7879@gmail.com</p>
           <div className="flex space-x-3 mt-3">
