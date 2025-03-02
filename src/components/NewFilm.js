@@ -100,20 +100,29 @@ const NewFilm = () => {
         </div>
       )}
       <h1 className="text-2xl font-bold mb-4 text-white">Phim Mới Cập Nhật</h1>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        {films.map((film) => (
-          <div
-            key={film._id}
-            className="bg-gray-800 text-white p-2 rounded hover:bg-gray-700 cursor-pointer"
-            onClick={() => navigate(`/film/${film.slug}`)}
-          >
-            <img src={film.thumb_url} alt={film.name} className="w-full h-60 object-cover rounded" />
-            <h2 className="text-lg font-semibold mt-2">{film.name}</h2>
-            <p className="text-sm text-gray-400 font-semibold">{film.origin_name}</p>
-            <p className="text-sm text-gray-400">{film.year}</p>
-          </div>
-        ))}
-      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+  {films.map((film) => (
+    <div
+      key={film._id}
+      className="bg-gray-800 text-white p-1 sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
+      onClick={() => navigate(`/film/${film.slug}`)}
+    >
+      <img
+        src={film.thumb_url}
+        alt={film.name}
+        className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
+      />
+      <h2 className="text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
+        {film.name}
+      </h2>
+      <p className="text-xs sm:text-sm text-gray-400 font-semibold">
+        {film.origin_name}
+      </p>
+      <p className="text-xs sm:text-sm text-gray-400">{film.year}</p>
+    </div>
+  ))}
+</div>
+
       <div className="flex justify-center mt-4 gap-2">
         <Button
           onClick={() => setPage((prev) => Math.max(1, prev - 1))}
