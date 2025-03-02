@@ -62,63 +62,115 @@ const HomePage = () => {
         <meta property="og:type" content="website" />
       </Helmet>
       {films.length > 0 && (
-        <div className="relative h-dvh overflow-hidden mb-8 mt-8" onClick={() => navigate(`/film/${films[currentSlide].slug}`)}>
-          {films.slice(0, 5).map((film, index) => (
-            <div
-              key={film._id}
-              className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
-              style={{ backgroundImage: `url(${film.thumb_url})`, backgroundSize: "cover", backgroundPosition: "center" }}
-            >
-              <div className="w-full h-full bg-gradient-to-b from-transparent to-gray-900 flex items-end p-6">
-                <div className="text-white">
-                  <h2 className="text-3xl font-bold mb-2 truncate">{film.name}</h2>
-                  <p className="text-sm text-gray-300">{film.year}</p>
-                  <button className="rounded-full bg-green-800 px-4 py-2 mt-4 flex items-center space-x-2">
-                    <FontAwesomeIcon icon={faPlay} />
-                    <span><b>Xem ngay</b></span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+  <div
+    className="relative h-[60vh] sm:h-dvh overflow-hidden mb-6 sm:mb-8 mt-6 sm:mt-8"
+    onClick={() => navigate(`/film/${films[currentSlide].slug}`)}
+  >
+    {films.slice(0, 5).map((film, index) => (
+      <div
+        key={film._id}
+        className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
+          index === currentSlide ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          backgroundImage: `url(${film.thumb_url})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="w-full h-full bg-gradient-to-b from-transparent to-gray-900 flex items-end p-4 sm:p-6">
+          <div className="text-white">
+            <h2 className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2 truncate">
+              {film.name}
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-300">{film.year}</p>
+            <button className="rounded-full bg-green-800 px-3 sm:px-4 py-1.5 sm:py-2 mt-3 sm:mt-4 flex items-center space-x-2 text-sm sm:text-base">
+              <FontAwesomeIcon icon={faPlay} />
+              <span>
+                <b>Xem ngay</b>
+              </span>
+            </button>
+          </div>
         </div>
-      )}
+      </div>
+    ))}
+  </div>
+)}
+
 
       <h1 className="text-2xl font-bold mb-4 text-white">Phim Mới Cập Nhật</h1>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        {films.map((film) => (
-          <div key={film._id} className="bg-gray-800 text-white p-2 rounded hover:bg-gray-700 cursor-pointer" onClick={() => navigate(`/film/${film.slug}`)}>
-            <img src={film.thumb_url} alt={film.name} className="w-full h-60 object-cover rounded" />
-            <h2 className="text-lg font-semibold mt-2">{film.name}</h2>
-            <p className="text-sm text-gray-400 font-semibold">{film.origin_name}</p>
-            <p className="text-sm text-gray-400">{film.year}</p>
-          </div>
-        ))}
-      </div>
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+      {films.map((film) => (
+    <div
+      key={film._id}
+      className="bg-gray-800 text-white p-1 sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
+      onClick={() => navigate(`/film/${film.slug}`)}
+    >
+      <img
+        src={film.thumb_url}
+        alt={film.name}
+        className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
+      />
+      <h2 className="text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
+        {film.name}
+      </h2>
+      <p className="text-xs sm:text-sm text-gray-400 font-semibold">
+        {film.origin_name}
+      </p>
+      <p className="text-xs sm:text-sm text-gray-400">{film.year}</p>
+    </div>
+  ))}
+</div>
 
-      <h1 className="text-2xl font-bold mt-8 mb-4 text-white">Phim Lẻ</h1>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        {singleFilms.map((film) => (
-          <div key={film._id} className="bg-gray-800 text-white p-2 rounded hover:bg-gray-700 cursor-pointer" onClick={() => navigate(`/film/${film.slug}`)}>
-            <img src={getFullImageUrl(film.thumb_url)} alt={film.name} className="w-full h-60 object-cover rounded" />
-            <h2 className="text-lg font-semibold mt-2">{film.name}</h2>
-            <p className="text-sm text-gray-400 font-semibold">{film.origin_name}</p>
-            <p className="text-sm text-gray-400">{film.year}</p>
-          </div>
-        ))}
-      </div>
+<h1 className="text-2xl font-bold mt-8 mb-4 text-white">Phim Lẻ</h1>
+<div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+  {singleFilms.map((film) => (
+    <div
+      key={film._id}
+      className="bg-gray-800 text-white p-1 sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
+      onClick={() => navigate(`/film/${film.slug}`)}
+    >
+      <img
+        src={getFullImageUrl(film.thumb_url)}
+        alt={film.name}
+        className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
+      />
+      <h2 className="text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
+        {film.name}
+      </h2>
+      <p className="text-xs sm:text-sm text-gray-400 font-semibold">
+        {film.origin_name}
+      </p>
+      <p className="text-xs sm:text-sm text-gray-400">{film.year}</p>
+    </div>
+  ))}
+</div>
 
-      <h1 className="text-2xl font-bold mt-8 mb-4 text-white">Phim Bộ</h1>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        {seriesFilms.map((film) => (
-          <div key={film._id} className="bg-gray-800 text-white p-2 rounded hover:bg-gray-700 cursor-pointer" onClick={() => navigate(`/film/${film.slug}`)}>
-            <img src={getFullImageUrl(film.thumb_url)} alt={film.name} className="w-full h-60 object-cover rounded" />
-            <h2 className="text-lg font-semibold mt-2">{film.name}</h2>
-            <p className="text-sm text-gray-400 font-semibold">{film.origin_name}</p>
-            <p className="text-sm text-gray-400">{film.year}</p>
-          </div>
-        ))}
-      </div>
+
+<h1 className="text-2xl font-bold mt-8 mb-4 text-white">Phim Bộ</h1>
+<div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+  {seriesFilms.map((film) => (
+    <div
+      key={film._id}
+      className="bg-gray-800 text-white p-1 sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
+      onClick={() => navigate(`/film/${film.slug}`)}
+    >
+      <img
+        src={getFullImageUrl(film.thumb_url)}
+        alt={film.name}
+        className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
+      />
+      <h2 className="text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
+        {film.name}
+      </h2>
+      <p className="text-xs sm:text-sm text-gray-400 font-semibold">
+        {film.origin_name}
+      </p>
+      <p className="text-xs sm:text-sm text-gray-400">{film.year}</p>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };
