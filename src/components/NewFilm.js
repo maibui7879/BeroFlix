@@ -70,7 +70,7 @@ const NewFilm = () => {
   }
 
   return (
-    <div className="w-full px-8 py-4 bg-gray-900 pt-8">
+    <div className="w-full px-2 md:px-8 py-4 bg-gray-900 pt-8">
       <Helmet>
         <title>BeroFlix - Phim Mới Cập Nhật</title>
       </Helmet>
@@ -121,7 +121,7 @@ const NewFilm = () => {
             <img
               src={film.thumb_url}
               alt={film.name}
-              className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
+              className="w-full h-32 sm:h-52 md:h-60 object-cover rounded"
             />
             <h2 className="ml-1 text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
               {film.name}

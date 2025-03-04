@@ -47,7 +47,7 @@ const SortFilm = () => {
   };
 
   return (
-    <div className="w-full p-4 bg-gray-900 text-white">
+    <div className="w-full p-4 px-2 md:px-8 bg-gray-900 text-white">
       <Helmet>
         <title>
           {results.length > 0

@@ -75,7 +75,7 @@ const RegionFilm = () => {
   }
 
   return (
-    <div className="w-full px-8 py-4 bg-gray-900 pt-8">
+    <div className="w-full px-2 md:px-8 py-4 bg-gray-900 pt-8">
       <Helmet>
         <title>BeroFlix - Phim {regionName}</title>
         <meta name="description" content={`Xem phim ${regionName} mới nhất, miễn phí trên BeroFlix. Trang ${page}.`} />
