@@ -7,7 +7,7 @@ import CategoryFilm from "./components/CategoryFilm";
 import RegionFilm from "./components/RegionFilm";
 import SortFilm from "./components/SortFilm";
 import HomePage from "./components/HomePage";
-
+import Survey from "./components/Survey";
 const AppRoutes = () => {
   return (
     <Router>
@@ -19,6 +19,7 @@ const AppRoutes = () => {
         <Route path="/category/:type_list" element={<Layout><CategoryFilm /></Layout>} />
         <Route path="/region/:type_list" element={<Layout><RegionFilm /></Layout>} />
         <Route path="/sortfilm" element={<Layout><SortFilm /></Layout>} />
+        <Route path="/survey" element={<Layout><Survey/></Layout>} />
       </Routes>
     </Router>
   );

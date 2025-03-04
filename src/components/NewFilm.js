@@ -7,12 +7,14 @@ import { faPlay, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-s
 import { Helmet } from "react-helmet-async";
 
 const NewFilm = () => {
+  const navigate = useNavigate();
   const [films, setFilms] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(() => {
+    return Number(localStorage.getItem("currentPage")) || 1;
+  });
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const navigate = useNavigate();
 
   const visiblePages = useMemo(() => {
     let pages = new Set([1, page - 1, page, page + 1, totalPages]);
@@ -45,6 +47,10 @@ const NewFilm = () => {
   }, [fetchFilms]);
 
   useEffect(() => {
+    localStorage.setItem("currentPage", page);
+  }, [page]);
+
+  useEffect(() => {
     if (page === 1 && films.length > 0) {
       const interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % Math.min(5, films.length));
@@ -69,64 +75,64 @@ const NewFilm = () => {
         <title>BeroFlix - Phim Mới Cập Nhật</title>
       </Helmet>
       {page === 1 && films.length > 0 && (
-  <div
-    className="relative h-[60vh] sm:h-dvh overflow-hidden mb-6 sm:mb-8 mt-6 sm:mt-8"
-    onClick={() => navigate(`/film/${films[currentSlide].slug}`)}
-  >
-    {films.slice(0, 5).map((film, index) => (
-      <div
-        key={film._id}
-        className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
-          index === currentSlide ? "opacity-100" : "opacity-0"
-        }`}
-        style={{
-          backgroundImage: `url(${film.thumb_url})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="w-full h-full bg-gradient-to-b from-transparent to-gray-900 flex items-end p-4 sm:p-6">
-          <div className="text-white">
-            <h2 className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2 truncate">
-              {film.name}
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-300">{film.year}</p>
-            <button className="rounded-full bg-green-800 px-3 sm:px-4 py-1.5 sm:py-2 mt-3 sm:mt-4 flex items-center space-x-2 text-sm sm:text-base">
-              <FontAwesomeIcon icon={faPlay} />
-              <span>
-                <b>Xem ngay</b>
-              </span>
-            </button>
-          </div>
+        <div
+          className="relative h-[60vh] sm:h-dvh overflow-hidden mb-6 sm:mb-8 mt-6 sm:mt-8"
+          onClick={() => navigate(`/film/${films[currentSlide].slug}`)}
+        >
+          {films.slice(0, 5).map((film, index) => (
+            <div
+              key={film._id}
+              className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
+                index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
+              style={{
+                backgroundImage: `url(${film.thumb_url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="w-full h-full bg-gradient-to-b from-transparent to-gray-900 flex items-end p-4 sm:p-6">
+                <div className="text-white">
+                  <h2 className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2 truncate">
+                    {film.name}
+                  </h2>
+                  <p className="text-xs sm:text-sm text-gray-300">{film.year}</p>
+                  <button className="rounded-full bg-green-800 px-3 sm:px-4 py-1.5 sm:py-2 mt-3 sm:mt-4 flex items-center space-x-2 text-sm sm:text-base">
+                    <FontAwesomeIcon icon={faPlay} />
+                    <span>
+                      <b>Xem ngay</b>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-)}
+      )}
 
       <h1 className="text-2xl font-bold mb-4 text-white">Phim Mới Cập Nhật</h1>
-      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-  {films.map((film) => (
-    <div
-      key={film._id}
-      className="bg-gray-800 text-white p-1 sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
-      onClick={() => navigate(`/film/${film.slug}`)}
-    >
-      <img
-        src={film.thumb_url}
-        alt={film.name}
-        className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
-      />
-      <h2 className="text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
-        {film.name}
-      </h2>
-      <p className="text-xs sm:text-sm text-gray-400 font-semibold">
-        {film.origin_name}
-      </p>
-      <p className="text-xs sm:text-sm text-gray-400">{film.year}</p>
-    </div>
-  ))}
-</div>
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {films.map((film) => (
+          <div
+            key={film._id}
+            className="md:bg-gray-800 text-white  sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
+            onClick={() => navigate(`/film/${film.slug}`)}
+          >
+            <img
+              src={film.thumb_url}
+              alt={film.name}
+              className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
+            />
+            <h2 className="ml-1 text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
+              {film.name}
+            </h2>
+            <p className="ml-1 text-xs sm:text-sm text-gray-400 font-semibold">
+              {film.origin_name}
+            </p>
+            <p className="ml-1 mb-1 text-xs sm:text-sm text-gray-400">{film.year}</p>
+          </div>
+        ))}
+      </div>
 
       <div className="flex justify-center mt-4 gap-2">
         <Button
@@ -137,16 +143,17 @@ const NewFilm = () => {
           <FontAwesomeIcon icon={faChevronLeft} />
         </Button>
         {visiblePages.map((num, index, arr) => (
-          <>
+          <span key={num}>
             {index > 0 && num - arr[index - 1] > 1 && <span className="text-white">...</span>}
             <Button
-              key={num}
               onClick={() => setPage(num)}
-              className={`bg-gray-800 text-white hover:bg-red-500 border-none ${page === num ? "bg-gray-700 font-bold" : ""}`}
+              className={`bg-gray-800 text-white hover:bg-red-500 border-none ${
+                page === num ? "bg-gray-700 font-bold" : ""
+              }`}
             >
               {num}
             </Button>
-          </>
+          </span>
         ))}
         <Button
           onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}

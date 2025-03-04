@@ -52,7 +52,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="w-full px-8 py-4 bg-gray-900 pt-8">
+    <div className="w-full px-2 md:px-8 py-4 bg-gray-900 pt-8">
     <Helmet>
         <title>BeroFlix - Xem phim online miễn phí</title>
         <meta name="description" content="Xem phim mới nhất, phim bộ, phim lẻ miễn phí trên BeroFlix." />
@@ -99,74 +99,74 @@ const HomePage = () => {
 
 
       <h1 className="text-2xl font-bold mb-4 text-white">Phim Mới Cập Nhật</h1>
-      <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
       {films.map((film) => (
     <div
       key={film._id}
-      className="bg-gray-800 text-white p-1 sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
+      className="md:bg-gray-800 text-white sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
       onClick={() => navigate(`/film/${film.slug}`)}
     >
       <img
         src={film.thumb_url}
         alt={film.name}
-        className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
+        className="w-full h-32 sm:h-52 md:h-60 object-cover rounded"
       />
-      <h2 className="text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
+      <h2 className="text-sm ml-1 mb-1 sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
         {film.name}
       </h2>
-      <p className="text-xs sm:text-sm text-gray-400 font-semibold">
+      <p className="text-xs ml-1 sm:text-sm text-gray-400 font-semibold">
         {film.origin_name}
       </p>
-      <p className="text-xs sm:text-sm text-gray-400">{film.year}</p>
+      <p className="text-xs ml-1 mb-1 sm:text-sm text-gray-400">{film.year}</p>
     </div>
   ))}
 </div>
 
 <h1 className="text-2xl font-bold mt-8 mb-4 text-white">Phim Lẻ</h1>
-<div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+<div className="grid grid-cols-2 md:grid-cols-5 gap-4">
   {singleFilms.map((film) => (
     <div
       key={film._id}
-      className="bg-gray-800 text-white p-1 sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
+      className="md:bg-gray-800 text-white sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
       onClick={() => navigate(`/film/${film.slug}`)}
     >
       <img
         src={getFullImageUrl(film.thumb_url)}
         alt={film.name}
-        className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
+        className="w-full h-32 sm:h-52 md:h-60 object-cover rounded"
       />
-      <h2 className="text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
+      <h2 className="ml-1 text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
         {film.name}
       </h2>
-      <p className="text-xs sm:text-sm text-gray-400 font-semibold">
+      <p className="ml-1 text-xs sm:text-sm text-gray-400 font-semibold">
         {film.origin_name}
       </p>
-      <p className="text-xs sm:text-sm text-gray-400">{film.year}</p>
+      <p className="ml-1 mb-1 text-xs sm:text-sm text-gray-400">{film.year}</p>
     </div>
   ))}
 </div>
 
 
 <h1 className="text-2xl font-bold mt-8 mb-4 text-white">Phim Bộ</h1>
-<div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+<div className="grid grid-cols-2 md:grid-cols-5 gap-4">
   {seriesFilms.map((film) => (
     <div
       key={film._id}
-      className="bg-gray-800 text-white p-1 sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
+      className="md:bg-gray-800 text-white  sm:p-2 rounded hover:bg-gray-700 cursor-pointer"
       onClick={() => navigate(`/film/${film.slug}`)}
     >
       <img
         src={getFullImageUrl(film.thumb_url)}
         alt={film.name}
-        className="w-full h-16 sm:h-52 md:h-60 object-cover rounded"
+        className="w-full h-32 sm:h-52 md:h-60 object-cover rounded"
       />
-      <h2 className="text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
+      <h2 className="ml-1 text-sm sm:text-base md:text-lg font-semibold mt-1 sm:mt-2">
         {film.name}
       </h2>
-      <p className="text-xs sm:text-sm text-gray-400 font-semibold">
+      <p className="ml-1 text-xs sm:text-sm text-gray-400 font-semibold">
         {film.origin_name}
       </p>
-      <p className="text-xs sm:text-sm text-gray-400">{film.year}</p>
+      <p className="ml-1 mb-1 text-xs sm:text-sm text-gray-400">{film.year}</p>
     </div>
   ))}
 </div>

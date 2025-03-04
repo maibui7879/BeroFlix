@@ -45,7 +45,7 @@ const Footer = () => {
             <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="hover:text-red-500">Trang chủ</a></li>
             <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="hover:text-red-500">Giới thiệu</a></li>
             <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="hover:text-red-500">Danh mục</a></li>
-            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="hover:text-red-500">Liên hệ</a></li>
+            <li><a href="/survey" className="hover:text-red-500">Khảo sát</a></li>
           </ul>
         </div>
       </div>
